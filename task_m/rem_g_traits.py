@@ -11,12 +11,14 @@ vec_tim_tmp_time      = [2] #same as above (time)
 
 class Reminder:
      def __init__(self, title, content):
+          self.id = 0
           self.title = title
           self.content = content
           self.date = time_t.datetime.now()
 
      def __str__(self):
-          string  = f'Title: {self.title}\n' 
+          string  = f'Id: {self.id}\n'
+          string += f'Title: {self.title}\n' 
           string += f'Content: {self.content}\n'
           string += f'Date: {self.date}\n'
 
