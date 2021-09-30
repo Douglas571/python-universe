@@ -3,9 +3,6 @@ A calculator writed in python
 
 """
 
-if __name__ == '__main__':
-    main()
-
 def main():
     operations = {
         '+': 'Addition',
@@ -24,6 +21,7 @@ def main():
     keep_work = True
     while keep_work:
         operation = input('Choice a operation (+, -, x, /): ')
+
         
         try:
             print(f'--- {operations[operation]} ---')
@@ -84,3 +82,6 @@ def pro(a, b):
 
 def div(a, b):
     return a / b
+
+if __name__ == '__main__':
+    main()
