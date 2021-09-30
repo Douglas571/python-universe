@@ -5,6 +5,9 @@
 
 import rem_g_handle as rHandle
 import rem_g_traits as rTraits
+from rem_g_traits import Reminder
+
+import datetime
 
 #bueno, te toca XD
 
@@ -28,7 +31,7 @@ import rem_g_traits as rTraits
 def main():
     keep_working = True
     while keep_working:
-        print('Task Manger')
+        print('[>]Reminder Manger')
 
         print(' > 1.View')
         print(' > 2.Add')
@@ -39,12 +42,22 @@ def main():
         print(' > 0.Exit')
 
         option = int(input('[?]:'))
+        print()
 
         if option == 0:
             keep_working = False
-        elif option == 1:
-            
+        elif option == 2:
+            add_reminder()
         
+def add_reminder():
+    print('[>]Adding Reminder')
+
+    title = input(' [?] title:')
+    content = input(' [?] reminder:')
+
+    reminder = Reminder(title, content)
+
+    print(reminder)
 
 if __name__ == '__main__':
     main()
