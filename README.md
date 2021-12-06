@@ -1,3 +1,3 @@
 # Python Univers
 
-Scripts hechos entre mis amigos y yo
+Scripts hechos para mí o mis amigos.
