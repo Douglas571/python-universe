@@ -82,16 +82,20 @@ def gauss_jordan3x3(matriz):
  #------------
 	
 
-	for f in range(0, n_filas):
+	for f in range(0, n_colms - 1):
 		k = Decimal(1)/Decimal(matriz[f][f])
 		matriz[f] = multiplicar_por_escalar(matriz[f], k)
+		print_matriz(matriz)
 
 		for fc in range(0, n_filas):
 		 	if f == fc: continue
 		 	a = matriz[f][f]
 		 	b = matriz[fc][f]
 		 	x = -Decimal(b)/Decimal(a)
+
+		 	print(f'fila {fc}')
 		 	aplanadora = multiplicar_por_escalar(matriz[f], x)
+		 	print(f'x={x};')
 		 	matriz[fc] = sumar_filas(matriz[fc], aplanadora)
 
 	print('resultado')
