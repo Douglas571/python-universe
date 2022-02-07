@@ -4,8 +4,6 @@
 """
 
 import math
-from decimal import *
-getcontext().prec = 10
 
 def print_matriz(matriz):
 	num_de_filas = len(matriz)
@@ -17,7 +15,7 @@ def print_matriz(matriz):
 			if (num_de_colms - c) == 2:
 				end_c = ' | '
 
-			print(f'{matriz[f][c]:.7f}', end=end_c)
+			print(f'{matriz[f][c]}', end=end_c)
 		print()
 	print()
 
@@ -70,20 +68,23 @@ def gauss_jordan1(matriz):
 	return matriz
 
 def multiplicar_por_escalar(fila, k):
-	return [Decimal(n) * Decimal(k) for n in fila]
+	return [n * k for n in fila]
 
 def sumar_filas(A, B):
-	return [Decimal(a) + Decimal(b) for a, b in zip(A, B)]
+	return [a + b for a, b in zip(A, B)]
 
 def gauss_jordan3x3(matriz):
 	n_filas = len(matriz)
 	n_colms = len(matriz[0])
 
+	matriz = convert_to_fraction(matriz)
+
+	print_matriz(matriz)
  #------------
 	
 
 	for f in range(0, n_colms - 1):
-		k = Decimal(1)/Decimal(matriz[f][f])
+		k = 1/matriz[f][f]
 		matriz[f] = multiplicar_por_escalar(matriz[f], k)
 		print_matriz(matriz)
 
@@ -91,7 +92,7 @@ def gauss_jordan3x3(matriz):
 		 	if f == fc: continue
 		 	a = matriz[f][f]
 		 	b = matriz[fc][f]
-		 	x = -Decimal(b)/Decimal(a)
+		 	x = -b/a
 
 		 	print(f'fila {fc}')
 		 	aplanadora = multiplicar_por_escalar(matriz[f], x)
@@ -103,8 +104,23 @@ def gauss_jordan3x3(matriz):
 
 	return matriz
 
-if __name__ == '__main__':
-	main()
+from fractions import Fraction
+
+def convert_to_fraction(matriz):
+
+	for f in range(0, len(matriz)):
+		matriz[f] = [Fraction(x).limit_denominator(1000) for x in matriz[f]]
+
+	return matriz
 
 def main():
-	pass
+	matriz = [
+		['3/5', 1.1],
+		['0.333', 4]
+	]
+	matriz = convert_to_fraction(matriz)
+	#print(matriz)
+	print_matriz(matriz)
+
+if __name__ == '__main__':
+	main()
