@@ -49,11 +49,29 @@ def gauss_test2():
 			[0, 0, 1, 1.1]
 		])
 
+def gauss_jordan_4x4():
+	print(f'verificando: caso1()')
+	mt = [
+		[  1.0,  2.0, -3.0, -1.0,  0.0],
+		[  1.0, -3.0,  2.0,  6.0, -8.0],
+		[ -3.0, -1.0,  3.0,  1.0,  0.0],
+		[  2.0,  3.0,  2.0, -1.0, -8.0]
+	]
+	gj.print_matriz(mt)
 
+	res = gj.gauss_jordan3x3(mt)
+	print('     ------')
+	print('solution is:')
+	gj.print_matriz([
+			[1, 0, 0, 0, -1],
+			[0, 1, 0, 0, -2],
+			[0, 0, 1, 0, -1],
+			[0, 0, 0, 1, -2]
+		])
 
 def main():
 	comprobation_test()
-	gauss_test2()
+	gauss_jordan_4x4()
 
 if __name__ == '__main__':
 	main()

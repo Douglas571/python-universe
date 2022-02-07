@@ -4,6 +4,8 @@
 """
 
 import math
+from decimal import *
+getcontext().prec = 10
 
 def print_matriz(matriz):
 	num_de_filas = len(matriz)
@@ -11,11 +13,11 @@ def print_matriz(matriz):
 
 	for f in range(0, num_de_filas):
 		for c in range(0, num_de_colms):
-			end_c = ''
+			end_c = ', '
 			if (num_de_colms - c) == 2:
 				end_c = ' | '
 
-			print(f'{matriz[f][c]:6}', end=end_c)
+			print(f'{matriz[f][c]:.7f}', end=end_c)
 		print()
 	print()
 
@@ -67,38 +69,36 @@ def gauss_jordan1(matriz):
 
 	return matriz
 
+def multiplicar_por_escalar(fila, k):
+	return [Decimal(n) * Decimal(k) for n in fila]
+
+def sumar_filas(A, B):
+	return [Decimal(a) + Decimal(b) for a, b in zip(A, B)]
+
 def gauss_jordan3x3(matriz):
 	n_filas = len(matriz)
 	n_colms = len(matriz[0])
 
  #------------
-	for f in range(0, 2):
-		obj = matriz[f][f]
-		matriz[f] = [n / obj for n in matriz[f]]
+	
 
-		print_matriz(matriz)
+	for f in range(0, n_filas):
+		k = Decimal(1)/Decimal(matriz[f][f])
+		matriz[f] = multiplicar_por_escalar(matriz[f], k)
 
 		for fc in range(0, n_filas):
-			if f == fc: 
-				continue
-			print(f'convertir a{fc},{f} en 1')
-			n_aplanar= matriz[fc][f]
-			matriz[fc] = [n * (1 / n_aplanar) for n in matriz[fc]]
-			print_matriz(matriz)
-		
-			x = matriz[f][f]
-			y = matriz[fc][f]
-			#print(f'x={x}; y={y}')
-			z = -y/x
-			#print(f'z={z}')
-			print(f'convertir fila {fc} en 0, sumar {z}')
-			for c in range(0, n_colms):
-				matriz[fc][c] += z
+		 	if f == fc: continue
+		 	a = matriz[f][f]
+		 	b = matriz[fc][f]
+		 	x = -Decimal(b)/Decimal(a)
+		 	aplanadora = multiplicar_por_escalar(matriz[f], x)
+		 	matriz[fc] = sumar_filas(matriz[fc], aplanadora)
 
 	print('resultado')
 	print_matriz(matriz)
 
 	return matriz
+
 if __name__ == '__main__':
 	main()
 
