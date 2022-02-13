@@ -1,4 +1,5 @@
 import gj
+from new_gj import gauss_jordan
 
 def comprobation_test():
 	print(f'verificando: es_escalonada_reducida()')
@@ -84,12 +85,46 @@ def gauss_jordan4():
 			[1, 0, '1/6', '1/3'],
 			[0, 1, '-13/2', 0]
 		])
+
+def gauss_jordan5_inc():
+	print(f'VERIFICATION: caso 5 - incompatible')
+	mt = [
+		[0, 0, -3],
+		[1, '-1/5', -3],
+		
+	]
+	gj.print_matriz(mt)
+
+	mt = gj.convert_to_fraction(mt)
+	res = gauss_jordan(mt)
+	print('     ------')
+	print('solution is:')
+	gj.print_matriz([
+			[1, '-1/5', -3],
+			[0,      0,  1]
+		])	
+
+def gauss_jordan6():
+	print(f'VERIFICATION: caso 6')
+	mt = [
+		[1, 1, 1, 9],
+		[2, -3, 4, 13],
+		[3, 4, 5, 40],
+	]
+	gj.print_matriz(mt)
+
+	res = gj.gauss_jordan(mt)
+	print('     ------')
+	print('solution is:')
+	#gj.print_matriz([])	
 def main():
-	comprobation_test()
-	gauss_jordan1()
-	gauss_jordan2()
-	gauss_jordan3()
-	gauss_jordan4()
+	#comprobation_test()
+	#gauss_jordan1()
+	#gauss_jordan2()
+	#gauss_jordan3()
+	#gauss_jordan4()
+	gauss_jordan5_inc()
+	#gauss_jordan6()
 
 if __name__ == '__main__':
 	main()
