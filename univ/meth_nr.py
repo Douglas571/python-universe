@@ -1,36 +1,29 @@
 import math
 
-def meth_nr(fn, Dfn, x, t=10, fn_err=None):
+def meth_nr(fn, Dfn, x, t=10, fn_err=None, v=False):
 	if not fn_err:
 		fn_err = lambda x, y: math.fabs(((x - y) / x) * 100)
 
 	err = 100
 	results = []
-	results.append({'x': x, 'err': None})
 
-	i = 0
 	while err > t:
-		print(f'\n--- iteration #{i}')
 		next_x = x - (fn(x)/Dfn(x))
 
-		print(f'f(x) = f({x}) = f({fn(x)})')
-		print(f'Df(x) = Df({x}) = Df({Dfn(x)})')
-		print(f'x{i + 1} = {next_x}')
-
-		if i > 0:
+		if len(results) > 0:
 			err = fn_err(next_x, x)
 
-		r = {'x':x, 'err': err}
+		r = {'x':x, 'next_x': next_x, 'err': err}
 		x = next_x
 		results.append(r)
-		i += 1
 
-	print(f'\n--- results ---')
-	for i, r in enumerate(results):
-		print(f'{i:>2}. {r}')
+	if v:
+		print(f'\n--- N-R Results ---')
+		for i, r in enumerate(results):
+			print(f'{(i + 1):>2}. {r}')
 
-	print()
 	return next_x, err
+
 def main():
 	x = 4
 	fn = lambda x: x**3 - 6*x**2 + 11*x - 8

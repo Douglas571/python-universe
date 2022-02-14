@@ -3,6 +3,8 @@ from regula_falsi import regula_falsi
 from meth_nr import meth_nr
 
 def main():
+	print('--- Métodos de busqueda de raices ---')
+
 	a = 0
 	b = 1
 	fn = lambda x: 6*x**3 - 5*x**2 + 7*x - 2
