@@ -14,12 +14,11 @@ def main():
 	aprx, err = meth_nr(fn, Dfn, b, t)
 	print(f'      N-R: aprx={aprx}, err={err:.9f}')
 
-	aprx, err = bisection(fn, a, b, t)
+	aprx, err = bisection(fn, a, b, t, v=True)
 	print(f' bisectin: aprx={aprx}, err={err}')
 
 	aprx, err = regula_falsi(fn, a, b, t)
 	print(f'reg-falsi: aprx={aprx}, err={err}')
-
 
 if __name__ == '__main__':
 	main()
