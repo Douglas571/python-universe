@@ -6,10 +6,10 @@ def main():
 	print('--- Métodos de busqueda de raices ---')
 	v = False#True
 
-	a = 2
-	b = 3
-	fn = lambda x : x**3 - 3 * x**2 + 1.6
-	t = 0.00001
+	a = 0
+	b = 1
+	fn = lambda x: 6*x**3 - 5*x**2 + 7*x - 2
+	t = 0.0001
 
 	Dfn = lambda x: 18*x**2 - 10*x + 7
 	aprx, err = meth_nr(fn, Dfn, b, t, v)
