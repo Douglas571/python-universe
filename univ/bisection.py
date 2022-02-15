@@ -2,22 +2,24 @@ import math
 
 def get_aprox(Xa, Xb):
 	m = (Xa + Xb) / 2
-	print(f'\nm = {Xa} + {Xb} / 2')
-	print(f'm = {m}')
+
+	#print(f'\nm = {Xa} + {Xb} / 2')
+	#print(f'm = {m}')
+
 	return m
 
 def calc_new_range(fn, Xa, Xb, aprox):
 	Ya = fn(Xa)
 	Y_aprox = fn(aprox)
 
-	print(f'\n --- calc_new_range ---')
-	print(f'f(a) = f({Xa}) = {fn(Xa)}')
-	print(f'f(b) = f({Xb}) = {fn(Xb)}')
-	print(f'f(m) = f({aprox}) = {fn(aprox)}')
+	#print(f'\n --- calc_new_range ---')
+	#print(f'f(a) = f({Xa}) = {fn(Xa)}')
+	#print(f'f(b) = f({Xb}) = {fn(Xb)}')
+	#print(f'f(m) = f({aprox}) = {fn(aprox)}')
 
 	p = Ya * Y_aprox
-	print(f'\nf(a).f(m) = f({fn(Xa)}).f({fn(aprox)})')
-	print(f'\nf(a).f(m) = {p} < 0: {p < 0}')
+	#print(f'\nf(a).f(m) = f({fn(Xa)}).f({fn(aprox)})')
+	#print(f'\nf(a).f(m) = {p} < 0: {p < 0}')
 
 	if Ya * Y_aprox > 0:
 		return aprox, Xb
@@ -34,10 +36,10 @@ def bisection(fn, Xa, Xb, t=10, v=False):
 	results = []
 
 	last_aprx = None
-	i = 0
+	#i = 0
 	while err > t:
-		i += 1
-		print(f'\n........ {i}th Iteración .....')
+		#i += 1
+		#print(f'\n........ {i}th Iteración .....')
 		aprx = get_aprox(Xa, Xb)
 		Xa, Xb = calc_new_range(fn, Xa, Xb, aprx)
 
@@ -55,7 +57,6 @@ def bisection(fn, Xa, Xb, t=10, v=False):
 
 		results.append(res)
 		
-
 	if v:
 		for i, res in enumerate(results):
 			print(f'{(i+1):>2}. {res}')
