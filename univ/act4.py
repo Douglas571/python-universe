@@ -11,13 +11,13 @@ def main():
 	t = 0.00001
 
 	Dfn = lambda x: 18*x**2 - 10*x + 7
-	aprx, err = meth_nr(fn, Dfn, b, t)
+	aprx, err = meth_nr(fn, Dfn, b, t, v=True)
 	print(f'      N-R: aprx={aprx}, err={err:.9f}')
 
 	aprx, err = bisection(fn, a, b, t)
 	print(f' bisectin: aprx={aprx}, err={err}')
 
-	aprx, err = regula_falsi(fn, a, b, t, v=True)
+	aprx, err = regula_falsi(fn, a, b, t)
 	print(f'reg-falsi: aprx={aprx}, err={err}')
 
 if __name__ == '__main__':

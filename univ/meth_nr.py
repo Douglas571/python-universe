@@ -1,28 +1,40 @@
 import math
 
 def meth_nr(fn, Dfn, x, t=10, fn_err=None, v=False):
+	print(f'\n.... Method of newton raphson ....')
 	if not fn_err:
 		fn_err = lambda x, y: math.fabs(((x - y) / x) * 100)
 
 	err = 100
 	results = []
+	X = [x]
 
+	i = 0
 	while err > t:
-		next_x = x - (fn(x)/Dfn(x))
+		print(f'\n--- {i + 1}th Iteration ---')
 
-		if len(results) > 0:
-			err = fn_err(next_x, x)
+		print(f'\nf(x) = f({X[i]}) = {fn(X[i])}')
+		print(f'Df(x) = Df({X[i]}) = {Dfn(X[i])}')
 
-		r = {'x':x, 'next_x': next_x, 'err': err}
-		x = next_x
+		new_x = X[i] - (fn(X[i])/Dfn(X[i]))
+		print(f'X{(i + 1)}={new_x}')
+		X.append(new_x)
+
+
+		if len(results) > 1:
+			err = fn_err(X[i+1], X[i])
+
+		r = {'x': X[i], 'next_x': X[i+1], 'err': err}
+		#x = next_x
 		results.append(r)
+		i += 1
 
 	if v:
 		print(f'\n--- N-R Results ---')
 		for i, r in enumerate(results):
-			print(f'{(i + 1):>2}. {r}')
+			print(f'{(i):>2}. {r}')
 
-	return next_x, err
+	return new_x, err
 
 def main():
 	x = 4
