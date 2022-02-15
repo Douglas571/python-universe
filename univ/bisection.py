@@ -58,6 +58,7 @@ def bisection(fn, Xa, Xb, t=10, v=False):
 		results.append(res)
 		
 	if v:
+		print('\n--- Bisection results ---')
 		for i, res in enumerate(results):
 			print(f'{(i+1):>2}. {res}')
 

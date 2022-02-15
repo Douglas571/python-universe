@@ -28,7 +28,7 @@ def calc_new_range(fn, a, b):
 	#print(f'{p} < 0: [a, c]: [{a}, {c}]')
 	return a, c, c
 
-def regula_falsi(fn, a, b, t=10, fn_err=None, v=False):
+def regula_falsi(fn, a, b, t=10, v=False, fn_err=None):
 	if not fn_err:
 		fn_err = lambda x, y : math.fabs((x - y) / x ) * 100
 

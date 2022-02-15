@@ -1,7 +1,6 @@
 import math
 
-def meth_nr(fn, Dfn, x, t=10, fn_err=None, v=False):
-	print(f'\n.... Method of newton raphson ....')
+def meth_nr(fn, Dfn, x, t=10, v=False, fn_err=None):
 	if not fn_err:
 		fn_err = lambda x, y: math.fabs(((x - y) / x) * 100)
 
@@ -11,13 +10,7 @@ def meth_nr(fn, Dfn, x, t=10, fn_err=None, v=False):
 
 	i = 0
 	while err > t:
-		print(f'\n--- {i + 1}th Iteration ---')
-
-		print(f'\nf(x) = f({X[i]}) = {fn(X[i])}')
-		print(f'Df(x) = Df({X[i]}) = {Dfn(X[i])}')
-
 		new_x = X[i] - (fn(X[i])/Dfn(X[i]))
-		print(f'X{(i + 1)}={new_x}')
 		X.append(new_x)
 
 
@@ -25,7 +18,6 @@ def meth_nr(fn, Dfn, x, t=10, fn_err=None, v=False):
 			err = fn_err(X[i+1], X[i])
 
 		r = {'x': X[i], 'next_x': X[i+1], 'err': err}
-		#x = next_x
 		results.append(r)
 		i += 1
 
