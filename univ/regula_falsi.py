@@ -4,28 +4,28 @@ def calc_new_range(fn, a, b):
 	Ya = fn(a)
 	Yb = fn(b)
 
-	print(f'\n*** calculating new range ***')
-	print(f'f(a) = f({a}) = {Ya}')
-	print(f'f(b) = f({b}) = {Yb}')
+	#print(f'\n*** calculating new range ***')
+	#print(f'f(a) = f({a}) = {Ya}')
+	#print(f'f(b) = f({b}) = {Yb}')
 
 	c = b - ((Yb*(a - b))/(Ya - Yb))
 	Yc = fn(c)
-	print(f'\nc = b - ((f(b)*(a - b))/(f(a) - f(b))')
-	print(f'c = {b} - ({Yb}*({a} - {b}))/({Ya} - {Yb})')
-	print(f'c = {c}')
-	print(f'f(c) = f({c}) = {Yc}')
-	print(f'f(c) = {Yc}')
+	#print(f'\nc = b - ((f(b)*(a - b))/(f(a) - f(b))')
+	#print(f'c = {b} - ({Yb}*({a} - {b}))/({Ya} - {Yb})')
+	#print(f'c = {c}')
+	#print(f'f(c) = f({c}) = {Yc}')
+	#print(f'f(c) = {Yc}')
 
 	p = Ya * Yc
 
-	print(f'\n___comprobando intervalo___')
-	print(f'f(a).f(c) = f({a}).f({c})')
-	print(f'f(a).f(c) = {Ya}.f({Yc}) = {p}')
+	#print(f'\n___comprobando intervalo___')
+	#print(f'f(a).f(c) = f({a}).f({c})')
+	#print(f'f(a).f(c) = {Ya}.f({Yc}) = {p}')
 	if p > 0:
-		print(f'{p} > 0: [c, b]: [{c}, {b}]')
+		#print(f'{p} > 0: [c, b]: [{c}, {b}]')
 		return c, b, c
 
-	print(f'{p} < 0: [a, c]: [{a}, {c}]')
+	#print(f'{p} < 0: [a, c]: [{a}, {c}]')
 	return a, c, c
 
 def regula_falsi(fn, a, b, t=10, fn_err=None, v=False):
@@ -38,11 +38,11 @@ def regula_falsi(fn, a, b, t=10, fn_err=None, v=False):
 
 	results = []
 
-	i = 0
-	print('\n...... Regula Falsi .......')
+	#i = 0
+	#print('\n...... Regula Falsi .......')
 	while err > t:
-		i += 1
-		print(f'\n---- {i}th Iteration ----')
+		#i += 1
+		#print(f'\n---- {i}th Iteration ----')
 		a, b, c = calc_new_range(fn, a, b)
 
 		if last_aprx:
