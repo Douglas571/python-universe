@@ -1,3 +1,6 @@
+"""
+	Utilities for work with matrix
+"""
 from fractions import Fraction
 
 def print_matrix(m):
@@ -50,7 +53,7 @@ def zeros_down(m, i):
 
 	return m, None
 
-def clear(m, i, simple=False):
+def clear_colum(m, i, simple=False):
 	#print('cleaning')
 	start = 0
 	end = len(m)

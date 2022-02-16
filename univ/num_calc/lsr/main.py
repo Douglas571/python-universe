@@ -1,8 +1,13 @@
+"""
+	Main execution file, 
+	for console input and output
+"""
+
 from fractions import Fraction
 import util
 import algorithms as alg
 
-def is_correct_m(m):
+def m_is_correct(m):
 	util.print_matrix(m)
 	res = input('\n¿Esta es la matriz? (s/n): ')
 	return (res.lower() == 's')
@@ -35,7 +40,7 @@ def main():
 	while True:
 		n_rows, n_cols = get_number_of_rows_and_cols()
 		m = get_amplified_matrix(n_rows, n_cols)
-		if is_correct_m(m): break
+		if m_is_correct(m): break
 
 	m2 = util.copy(m)
 
