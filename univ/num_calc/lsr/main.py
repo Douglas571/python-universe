@@ -49,7 +49,10 @@ def main():
 
 	if err:
 		print(err)
+		print('Gauss:')
 		util.print_matrix(m)
+		print('\nGauss Jordan:')
+		util.print_matrix(m2)
 		return 0
 
 	print('\n---- RESULTADOS -----')

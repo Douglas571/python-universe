@@ -23,24 +23,20 @@ def add(fila_a, fila_b):
 def scalar_product(fila, k):
 	return [x * k for x in fila]
 
-def swap(m, a, b):
-	temp = m[a]
-	m[a] = m[b]
-	m[b] = temp
+def swap(m, i, j):
+	temp = m[i]
+	m[i] = m[j]
+	m[j] = temp
 	return m
 
 def zeros_down(m, i):
 	j = i + 1
 	n_rows = len(m)
 	while(m[i][i] == 0 and j < n_rows):
-		#print(f'm{m}')
-		#print(f'i{i}')
-		#print(f'j{j}')
-
 		m = swap(m, i, j)
 		j += 1
 
-	if(m[i][i] == 0):
+	if m[i][i] == 0:
 		total = 0
 		for j in range(len(m[i])):
 			total += m[i][j]
@@ -54,25 +50,20 @@ def zeros_down(m, i):
 	return m, None
 
 def clear_colum(m, i, simple=False):
-	#print('cleaning')
 	start = 0
 	end = len(m)
 
 	if simple: start = i
 
 	for j in range(start, end):
-		#si j == i: saltar
 		if j == i: continue
 
 		a = m[i][i]
 		b = m[j][i]
 		c = -(b/a)
 
-		#print(f'a = {a}; b = {b}; c = {c}')
-
 		aplanador = scalar_product(m[i], c)
 		m[j] = add(m[j], aplanador)
-		#print_matrix(m)
 
 	return m
 
