@@ -1,5 +1,8 @@
 """
 	Utilities for work with matrix
+
+	by Douglas Socorro 29.748.656
+	douglassocorro1@gmai.com
 """
 from fractions import Fraction
 

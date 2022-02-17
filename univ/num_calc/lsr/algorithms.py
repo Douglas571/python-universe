@@ -1,5 +1,8 @@
 """
 	Algorithms of Gauss and Gauss-Jordan
+	
+	by Douglas Socorro 29.748.656
+	douglassocorro1@gmai.com
 """
 
 from fractions import Fraction as frac

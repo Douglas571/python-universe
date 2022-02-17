@@ -1,6 +1,9 @@
 """
 	Main execution file, 
 	for console input and output
+	
+	by Douglas Socorro 29.748.656
+	douglassocorro1@gmai.com
 """
 
 from fractions import Fraction
