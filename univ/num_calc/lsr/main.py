@@ -31,9 +31,17 @@ def get_amplified_matrix(n_rows, n_cols):
 		elms = input(f'fila #{(i + 1)}: ').strip().split(',')
 		row = ([Fraction(x) for x in elms])
 
+		if len(row) > n_cols:
+			err = f'Error: hay elementos demas en la fila {(i+1)}'
+			return m, err
+
+		if len(row) < n_rows:
+			err = f'Error: faltan elementos en la fila {(i+1)}'
+			return m, err
+
 		m.append(row)
 
-	return m
+	return m, None
 
 def main():
 	print('--- Métodos de eliminación Gauss/Gauss-Jordan ---')
@@ -42,7 +50,12 @@ def main():
 
 	while True:
 		n_rows, n_cols = get_number_of_rows_and_cols()
-		m = get_amplified_matrix(n_rows, n_cols)
+		m, err = get_amplified_matrix(n_rows, n_cols)
+
+		if err:
+			print(err)
+			return 0
+
 		if m_is_correct(m): break
 
 	m2 = util.copy(m)

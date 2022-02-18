@@ -8,7 +8,7 @@ from fractions import Fraction
 
 def print_matrix(m):
 	for i in range(len(m)):
-		for j in range(len(m[0])):
+		for j in range(len(m[i])):
 			el = str(m[i][j])
 			if j == 0:
 				print(f'  ({el:>7}', end='')
@@ -20,11 +20,11 @@ def print_matrix(m):
 
 			print(f'{el:>7}', end='')
 
-def add(fila_a, fila_b):
-	return [a + b for a, b in zip(fila_a, fila_b)]
+def add(row_a, row_b):
+	return [a + b for a, b in zip(row_a, row_b)]
 
-def scalar_product(fila, k):
-	return [x * k for x in fila]
+def scalar_product(row, k):
+	return [x * k for x in row]
 
 def swap(m, i, j):
 	temp = m[i]
