@@ -1,0 +1,18 @@
+Cosas que ha de tener:
+
+# guardar citas:
+  Cita
+    Id
+    Autor
+    Texto
+    Año
+
+    Popularidad
+
+# guardar autor:
+  Autor
+    Id
+    Nombre
+    Fecha de Nacimiento
+    Biografía
+    Citas
