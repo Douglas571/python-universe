@@ -21,6 +21,8 @@ def delete_quotes(c, filters={}):
       query += f'{k}=:{k} '
 
   res = c.execute(query, filters).fetchall()
+
+  print(query)
   return res
 
 def update_quote(c, new_data, filters):
@@ -39,6 +41,8 @@ def update_quote(c, new_data, filters):
   arguments = new_data | where
 
   res = c.execute(query, arguments)
+
+  print(query)
   return res
 
 def get_quotes(c, filters={}, order_by=[]):
@@ -56,8 +60,9 @@ def get_quotes(c, filters={}, order_by=[]):
     for o in order_by:
       query += o + " "
     
-  print(query)
   quotes = c.execute(query, filters).fetchall()
+  
+  print(query)
   return quotes  
 
 def save_quote(c, quote):
