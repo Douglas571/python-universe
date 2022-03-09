@@ -72,6 +72,8 @@ def main():
   save_quote(cursor, ('Darth Sidious', 'El dolor lleva al miedo, el miedo lleva al odio...', 3790, 5))
   save_quote(cursor, ('Darth Vader', 'Yo soy tu padre', 3800, 3))
 
+  save_quote(cursor, ('Yoda', 'La fuerza, fuerte en tí es', 2970, 2))
+
   connection.commit()
   connection.close()
 
@@ -80,8 +82,8 @@ def main():
   con = sqlite3.connect('example.db')
   cur = con.cursor()
   with con:
-    update_quote(con, {'content':'La fuerza, fuerte en tí es'}, {'author': 'Yoda'})
-    # delete_quotes(con, {author})
+    update_quote(con, {'content':'Cuándo veas hacia el lado oscuro, cuidadoso debes de ser...'}, {'author': 'Yoda'})
+    # delete_quotes(con)
     quotes = get_quotes(con, filters={}, order_by=['popularity'])
     # quotes = get_quotes(con)
 
