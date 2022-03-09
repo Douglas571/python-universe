@@ -3,6 +3,15 @@ import sqlite3
 def save_author(c, author):
   pass
 
+def exists_table(c, name):
+  res = c.execute('select name from sqlite_master where type="table" and name=:name', { "name": name }).fetchall()
+  return len(res) > 0
+
+def ensure_table(c, name):
+  if not exists_table(c, name):
+    c.execute("""create table (?)
+    (author text, content text, year integer, popularity integer)""", (name,))  
+
 def delete_quotes(c, filters={}):
   query = 'delete from quotes'
 
@@ -51,38 +60,30 @@ def get_quotes(c, filters={}, order_by=[]):
   quotes = c.execute(query, filters).fetchall()
   return quotes  
 
-
-
 def save_quote(c, quote):
-  c.execute("insert into quotes values (?, ?, ?, ?)", quote)
-
-def exists_table(cur, name):
-  res = cur.execute('select name from sqlite_master where type="table" and name=:name', { "name": name }).fetchall()
-  return len(res) > 0  
+  c.execute("insert into quotes values (?, ?, ?, ?)", quote)  
 
 def main():
   connection = sqlite3.connect('example.db')
   cursor = connection.cursor()
 
-  if not exists_table(cursor, 'quotes'):
-    cursor.execute("""create table quotes
-    (author text, content text, year integer, popularity integer)""")  
+  ensure_table(cursor, 'quotes')
 
-    save_quote(cursor, ('Yoda', 'Que la fuerza, contigo esté', 3790, 5))
-    save_quote(cursor, ('Darth Vader', 'Yo soy tu padre', 3800, 3))
+  save_quote(cursor, ('Darth Sidious', 'El dolor lleva al miedo, el miedo lleva al odio...', 3790, 5))
+  save_quote(cursor, ('Darth Vader', 'Yo soy tu padre', 3800, 3))
 
   connection.commit()
   connection.close()
 
+  # Read and update phase
+
   con = sqlite3.connect('example.db')
   cur = con.cursor()
-
   with con:
-
     update_quote(con, {'content':'La fuerza, fuerte en tí es'}, {'author': 'Yoda'})
-    delete_quotes(con)
-    # quotes = get_quotes(con, filters={'author':'author 1'}, order_by=['popularity'])
-    quotes = get_quotes(con)
+    # delete_quotes(con, {author})
+    quotes = get_quotes(con, filters={}, order_by=['popularity'])
+    # quotes = get_quotes(con)
 
 
   print('Quotes')
