@@ -22,7 +22,7 @@ def swap(A, i, j):
 def insertion_sort(array):
   A = array.copy()
 
-  for i in range(2, len(A)):
+  for i in range(1, len(A)):
     j = i
     while (A[j] < A[j-1] and j > 0):
       swap(A, j, j-1)
@@ -31,70 +31,68 @@ def insertion_sort(array):
   return A
 
 def merge(A, low, mid, top):
-  print(f'\nmerging: low={low}, mid={mid}, top={top}')
-  print(f'init={A}')
-  i = 0
+  print(f'merg: low={low}, mid={mid}, top={top}')
+  buf_a = []
+  buf_b = []
 
-  buffer1 = deque([])
-  buffer2 = deque([])
-
-  for i in range(low, mid+1):
-    buffer1.appendleft(A[i])
-
-  for i in range(mid+1, top):
-    print(f'2th i={i}')
-    buffer2.appendleft(A[i])
-
-  print(f'  buffer1={buffer1}')
-  print(f'  buffer2={buffer2}')
   i = low
-  while not (len(buffer1) == 0 or len(buffer2) == 0):
-
-    if buffer1[0] <= buffer2[0]:
-      A[i] = buffer1.popleft()
-      i += 1
-    else:
-      A[i] = buffer2.popleft()
-      i += 1
-
-  while not len(buffer1) == 0:
-    A[i] = buffer1.popleft()
+  while i <= mid:
+    print(f'low i={i}')
+    buf_a.append(A[i])
     i += 1
 
-  while not len(buffer2) == 0:
-    A[i] = buffer2.popleft()
+  i = mid + 1
+  while i <= top:
+    buf_b.append(A[i])
+    i += 1
+
+  print(f'buf_a={buf_a}')  
+  print(f'buf_b={buf_b}')
+
+  i = low
+  while not (len(buf_a) == 0 or len(buf_b) == 0):
+    if buf_a[0] <= buf_b[0]:
+      A[i] = buf_a.pop(0)
+      i += 1
+
+    else:
+      A[i] = buf_b.pop(0)
+      i += 1
+
+  while not len(buf_a) == 0:
+    A[i] = buf_a.pop(0)
     i += 1    
 
-  print(f'  final merge: {A}')
+  while not len(buf_a) == 0:
+    A[i] = buf_b.pop(0)
+    i += 1
 
+  print(f'buf_a={buf_a}')  
+  print(f'buf_b={buf_b}')
 
+  print(f'final A={A}')
+  s = A
 
-def mergesort(S, low, top):
-  # si hay para dividir:
-    # hacer mergesort con la mitad inferior
-    # hacer mergesort con la mitad superior
-    # hacer merge con las mitades
+def mergesort(A, low, top, S=None):
+  if not S: S = A.copy()
+  if S: A = S
 
-  print(f'\nmergesort: low={low}, top={top}')
-  print(f'  (loop-check): low < top -> ({low} < {top}) -> {(low < top)}')
   if low < top:
-    
     mid = math.floor((low + top) / 2)
+    print(f'mergesort: low={low}, mid={mid}, top={top}, A = {A}')
+    mergesort(A, low, mid, S)
+    print('sencond part')
+    mergesort(A, mid+1, top, S)
+    merge(A, low, mid, top)
 
-    print(f'  1th, low={low}, mid={mid}')
-    mergesort(S, low, mid)
-
-    print(f'  2th, mid={mid}, mid+1={(mid+1)}, top={top}')
-    mergesort(S, mid+1, top)
-
-    merge(S, low, mid, top)
+  return S
 
 import unittest
 
 class TestCase(unittest.TestCase):
   def test_one(self):
-    A   = [4, 9, 4, 10, 7, 2, 1, 3, 5, 6, 8]
-    exp = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 10]
+    A   = [3, 1, 5, 2, 4]
+    exp = sorted(A)
 
     ssr = selection_sort(A)
     self.assertEqual(ssr, exp)
@@ -102,10 +100,7 @@ class TestCase(unittest.TestCase):
     isr = insertion_sort(A)
     self.assertEqual(isr, exp)
 
-    d = deque(A)
-    print(f'1th of deque = {d[0]}')
-
-    msr = mergesort(A, 0, (len(A)-1))
+    msr = mergesort(A, 0, len(A)-1)
     self.assertEqual(msr, exp)
 
 if __name__ == '__main__':
