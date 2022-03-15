@@ -31,32 +31,41 @@ def insertion_sort(array):
   return A
 
 def merge(A, low, mid, top):
+  print(f'\nmerging: low={low}, mid={mid}, top={top}')
+  print(f'init={A}')
   i = 0
 
-  buffer1 = deque(S[low:mid+1])
-  buffer2 = deque(S[mid:top])
+  buffer1 = deque([])
+  buffer2 = deque([])
 
-  print(f'buffer1={buffer1}')
-  print(f'buffer2={buffer2}')
+  for i in range(low, mid+1):
+    buffer1.appendleft(A[i])
+
+  for i in range(mid+1, top):
+    print(f'2th i={i}')
+    buffer2.appendleft(A[i])
+
+  print(f'  buffer1={buffer1}')
+  print(f'  buffer2={buffer2}')
   i = low
   while not (len(buffer1) == 0 or len(buffer2) == 0):
 
     if buffer1[0] <= buffer2[0]:
-      S[i] = buffer1.popleft()
+      A[i] = buffer1.popleft()
       i += 1
     else:
-      S[i] = buffer2.popleft()
+      A[i] = buffer2.popleft()
       i += 1
 
   while not len(buffer1) == 0:
-    S[i] = buffer1.popleft()
+    A[i] = buffer1.popleft()
     i += 1
 
   while not len(buffer2) == 0:
-    S[i] = buffer2.popleft()
+    A[i] = buffer2.popleft()
     i += 1    
 
-  print(f'final merge: {S}')
+  print(f'  final merge: {A}')
 
 
 
@@ -66,15 +75,16 @@ def mergesort(S, low, top):
     # hacer mergesort con la mitad superior
     # hacer merge con las mitades
 
-  print(f'\niter -> low={low}, top={top}')
+  print(f'\nmergesort: low={low}, top={top}')
+  print(f'  (loop-check): low < top -> ({low} < {top}) -> {(low < top)}')
   if low < top:
-    print(f'low < top => {low} < {top} => {(low < top)}')
+    
     mid = math.floor((low + top) / 2)
 
-    print(f'1th, low={low}, mid={mid}')
+    print(f'  1th, low={low}, mid={mid}')
     mergesort(S, low, mid)
 
-    print(f'2th, mid={mid}, mid+1={(mid+1)}, top={top}')
+    print(f'  2th, mid={mid}, mid+1={(mid+1)}, top={top}')
     mergesort(S, mid+1, top)
 
     merge(S, low, mid, top)
@@ -95,7 +105,7 @@ class TestCase(unittest.TestCase):
     d = deque(A)
     print(f'1th of deque = {d[0]}')
 
-    msr = mergesort(A, 0, len(A))
+    msr = mergesort(A, 0, (len(A)-1))
     self.assertEqual(msr, exp)
 
 if __name__ == '__main__':
