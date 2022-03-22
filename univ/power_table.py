@@ -4,14 +4,8 @@ import sys
 
 def inquire():
   try:
-    n = input("[?] what's the number (defualt=2): ")
-    i = input("[?] what's the index (default=7): ")
-
-    if n == '': n = 2
-    else: n = int(n)
-
-    if i == '': i = 7
-    else: i = int(i)
+    n = int(input("[?] what's the number (defualt=2): ") or 2)
+    i = int(input("[?] what's the index (default=7): ") or 7)
 
   except ValueError:
     print('ValueError: Write correct integuers\n')
