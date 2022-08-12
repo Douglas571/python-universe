@@ -48,3 +48,14 @@ print('init deque test')
 deque_res = timeit.timeit(test_dequeue, number=times)
 
 print(f'results:\n  list={list_res}ms\n  deque={deque_res}ms')
+
+# testing benchmark with time.time()
+import time
+import math
+
+start = time.time()
+time.sleep(1)
+end = time.time()
+
+lag = end - start
+print(f'total is: {lag}')

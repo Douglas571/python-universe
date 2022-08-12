@@ -35,9 +35,11 @@ def main():
   n, i = get_input()
 
   print(f'[Result] The power table of {n} from 0 to {i} is:')
+  max_value = 0
   for i in reversed(range(i+1)):
     res = pow(n, i)
+    max_value += res
     print(f'{n:>2}^{i:<2} = {res}')
-
+  print(f'[max_value] {max_value}')
 if __name__ == '__main__':
   main()

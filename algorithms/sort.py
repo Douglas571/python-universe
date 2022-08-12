@@ -1,3 +1,6 @@
+# https://www.geeksforgeeks.org/bubble-sort/
+# https://www.geeksforgeeks.org/python-program-for-merge-sort/
+
 from collections import deque
 import math
 
@@ -31,13 +34,13 @@ def insertion_sort(array):
   return A
 
 def merge(A, low, mid, top):
-  print(f'merg: low={low}, mid={mid}, top={top}')
+  # print(f'merg: low={low}, mid={mid}, top={top}')
   buf_a = []
   buf_b = []
 
   i = low
   while i <= mid:
-    print(f'low i={i}')
+    # print(f'low i={i}')
     buf_a.append(A[i])
     i += 1
 
@@ -46,8 +49,8 @@ def merge(A, low, mid, top):
     buf_b.append(A[i])
     i += 1
 
-  print(f'buf_a={buf_a}')  
-  print(f'buf_b={buf_b}')
+  # print(f'buf_a={buf_a}')  
+  # print(f'buf_b={buf_b}')
 
   i = low
   while not (len(buf_a) == 0 or len(buf_b) == 0):
@@ -67,10 +70,10 @@ def merge(A, low, mid, top):
     A[i] = buf_b.pop(0)
     i += 1
 
-  print(f'buf_a={buf_a}')  
-  print(f'buf_b={buf_b}')
+  # print(f'buf_a={buf_a}')  
+  # print(f'buf_b={buf_b}')
 
-  print(f'final A={A}')
+  # print(f'final A={A}')
   s = A
 
 def mergesort(A, low, top, S=None):
@@ -79,9 +82,9 @@ def mergesort(A, low, top, S=None):
 
   if low < top:
     mid = math.floor((low + top) / 2)
-    print(f'mergesort: low={low}, mid={mid}, top={top}, A = {A}')
+    # print(f'mergesort: low={low}, mid={mid}, top={top}, A = {A}')
     mergesort(A, low, mid, S)
-    print('sencond part')
+    # print('sencond part')
     mergesort(A, mid+1, top, S)
     merge(A, low, mid, top)
 
