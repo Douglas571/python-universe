@@ -22,6 +22,8 @@ def run_golder_search(a, b):
     else:
         return [a, a2, a1, a2, fa1, fa2]
 
+
+#TO-DO: Make this function recursive
 for i in range(15):
     a, b, a1, a2, fa1, fa2 = run_golder_search(a, b)
     print(f'iteración #{i}')
