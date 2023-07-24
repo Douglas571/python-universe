@@ -1,3 +1,3 @@
 # Python Univers
 
-Scripts maded with my friends for fun.
+Scripts made with my friends for fun.
